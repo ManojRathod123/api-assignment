@@ -1,0 +1,1 @@
+export const API_BASE1_PATH = 'http://localhost:8000/api/genres';

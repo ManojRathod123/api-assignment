@@ -1,0 +1,27 @@
+/* REACT-FINAL-FORM
+
+1) React final form has few default methods..
+<Form> // In form field we have a below methods..
+    onSubmit :- onsubmit handle the submit 
+    handleSubmit:- In onsubmit methods we have a handleSubmit method which is handle the form submit..
+    validation:-  Also we need to define validation method...which is validate the function. 
+</Form>
+
+<Field>
+      {...input}:- we can say input as props||property...its takes the values of text area..changes of text area...
+      meta:- we have meta here for validation..its check whether user touch to filed or not..
+             if there is an error then it will print the error msg
+<Field>
+
+<Field name="firstname" validate={required}
+
+******* To this area code we called React-render-props.This approch called childern  ******** 
+              {({ input, meta }) => (
+                <div>
+                  <label>Name</label>
+                  <input {...input} type="text" placeholder="First Name" />
+                  {meta.error && meta.touched && <span>{meta.error}</span>}
+                </div>
+              )}
+</Field>
+*/
