@@ -1,14 +1,10 @@
 import React from "react";
+import Button from "react-bootstrap/Button";
 import { Form, Field } from "react-final-form";
 
 const onSubmit = (values) => {
   window.alert(JSON.stringify(values, 0, 2));
 };
-
-//const required = (value) => (value ? undefined : "Required");
-
-// const email =
-// const password =
 
 const Login = () => (
   <Form
@@ -25,34 +21,32 @@ const Login = () => (
     }}
     render={({ handleSubmit, form, submitting, pristine, values }) => (
       <form onSubmit={handleSubmit}>
-        <div className="main-div">
-          <h2 className="title"> Login Form </h2>
-          <div className="sub-div">
-            <Field name="email">  
+      <div className="main-div">
+        <div className="auth-inner">
+          <h2> Login Form </h2>
+          <Field name="email">
               {({ input, meta }) => (
-                <div>
-                  <label className="label">Email</label>
-                  <input {...input} type="text" placeholder="email" />
+                <div className="form-group">
+                  <label>Email</label>
+                  <input {...input} type="text" placeholder="email" className="form-control"/>
                   {meta.error && meta.touched && <span>{meta.error}</span>}
                 </div>
               )}
             </Field>
             <Field name="password">
               {({ input, meta }) => (
-                <div>
-                  <label className="label">Password</label>
-                  <input {...input} type="password" placeholder="password" />
+                <div className="form-group">
+                  <label>Password</label>
+                  <input {...input} type="password" placeholder="password" className="form-control"/>
                   {meta.error && meta.touched && <span>{meta.error}</span>}
                 </div>
               )}
             </Field>
-            <div className="buttons">
-              <button type="submit" disabled={submitting} className="btn">
-                Submit
-              </button>
+            <div>
+              <Button as="input" type="submit" value="Submit" />{" "}
             </div>
-          </div>
         </div>
+      </div>
       </form>
     )}
   />

@@ -1,38 +1,36 @@
-import React, { useEffect, useState } from "react";
-import { registration } from "../API_CALLS/registration_axios";
+import React, { Component } from "react";
 
-const Contact = () => {
-  const [data, setdata] = useState([]);
+class Contact extends Component{
 
-  useEffect(async () => {
-    setdata(await registration);
-  }, []);
+PostData(){ // here postdata is a method
+try{
+let manoj = fetch('http:localhost:8000/api/users',{
+  mathod:'post',
+  mode:'no-cors',
+  headers:{
+    'content-type':'application/json', // content type decide the what kind of responce client sending to the server. 
+    'Accept':'application/json' // Accept headers decline the what kind of responce accepted. the responce should be in the json format
+  },
+  body:JSON.stringify({
+    key1:'myusername'
+  })
+});
+console.log('result' + manoj)
+}catch(e) {
+  console.log(e)
+}  
 
-  return (
-    <>
-      <h1 className=" title">Registration API</h1>
-      <div>
-        {" "}
-        <ul>
-          <div>
-            <table className="table">
-              <tr>
-                <th>User ID</th>
-                <th>Name</th>
-                <th>Email</th>
-              </tr>
-              {data.map((val, index) => (
-                <tr key={index}>
-                  <td>{val._id}</td>
-                  <td>{val.name}</td>
-                  <td>{val.email}</td>
-                </tr>
-              ))}
-            </table>
-          </div>
-        </ul>
-      </div>
-    </>
-  );
-};
-export default Contact;
+}
+
+render(){
+  return(
+    <div>
+      <button onClick={()=>this.PostData()}>Post data here</button>
+    </div>
+  )
+}
+
+
+
+}
+export default Contact; 

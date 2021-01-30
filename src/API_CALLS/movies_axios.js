@@ -1,8 +1,8 @@
 import axios from "axios";
-import { API_BASE3_PATH } from "./BASE3_URL";
+import { API_BASE_PATH } from "./BASE_URL";
 
 export const movies = axios
-  .get(`${API_BASE3_PATH}`)
+  .get(`${API_BASE_PATH}/movies`)
   .then((res) => {
     console.log(res.data);
     return res.data;

@@ -21,6 +21,7 @@ const Movies = () =>{
                   <th>title</th>
                   <th>numberInStock</th>
                   <th>dailyRentalRate</th>
+                  <th>Genres</th>
                 </tr>
                 {mdata.map((val, index) => (
                   <tr key={index}>
@@ -28,6 +29,7 @@ const Movies = () =>{
                     <td>{val.title}</td>
                     <td>{val.numberInStock}</td>
                     <td>{val.dailyRentalRate}</td>
+                    <td>{val.genre.name}</td>
                   </tr>
                 ))}
               </table>

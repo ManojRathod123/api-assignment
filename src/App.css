@@ -1,6 +1,18 @@
+@import url("https://fonts.googleapis.com/css?family=Fira+Sans:400,500,600,700,800");
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+label {
+  font-weight: 500;
+  font-family: "Fira Sans", sans-serif;
+}
+
 * {
-  margin: 0px;
-  padding: 0px;
+  box-sizing: border-box;
 }
 .MenuStyle {
   width: 100%;
@@ -53,73 +65,30 @@ h4 {
 
 .main-div {
   text-align: center;
+  margin-top: 50px;
+  
 }
-
 .sub-div {
-  width: 350px;
-  height: 200px;
-  padding: 50px;
-  border: 2px solid black;
-  margin-left: 490px;
-  margin-top: 30px;
-}
-
-/* input[type=text],input[type=password], input[type=password]{
-  width:80px;
-  padding: 5px 50px;
-  margin: 10px 10px;
-  box-sizing: border-box;
-  border: 2px solid black;
-} */
-
-/* input[type=submit]{
-  background-color: brown;
-  border: none;
-  border-radius: 5px;
-  color:black;4w0
-  padding: 6px;
-} */
-
-button {
-  margin-top: 15px;
-  padding: 6px 25px;
-  box-sizing: border-box;
-  border: 2px solid black;
-  border-radius: 5px;
-}
-.btn {
-  color: black;
-  font-size: 15px;
-  font-weight: bolder;
-  padding: 5px;
-  margin: 5px;
-}
-.table{
-  font-family: Arial, Helvetica, sans-serif;
-  border-collapse: collapse;
-  width: 50%;
-  margin-top: 30px;
-  margin-left: 320px;
-}
-
-.table td, #customers th {
-  border: 1px solid #ddd;
-  padding: 8px;
   text-align: center;
 }
-.table tr:nth-child(even){background-color: #f2f2f2;}
-
-.table th {
-  padding-top: 12px;
-  padding-bottom: 12px;
+body {
+  background: #1c8ef9 !important;
+  font-weight: 400;
+  font-family: "Fira Sans", sans-serif;
+}
+.auth-inner {
+  width: 450px;
+  margin: auto;
+  background: #ffffff;
+  box-shadow: 0px 14px 80px rgba(34, 35, 58, 0.2);
+  padding: 40px 55px 45px 55px;
+  border-radius: 15px;
+  transition: all 0.3s;
+}
+ .form-control:focus {
+  border-color: #167bff;
+  box-shadow: none;
+}
+.label{
   text-align: left;
-  background-color: #4CAF50;
-  color: white;
-  text-align: center;
 }
-
-.table td, #customers th {
-  border: 1px solid #ddd;
-  padding: 8px;
-}
-table tr:hover {background-color: #ddd;}

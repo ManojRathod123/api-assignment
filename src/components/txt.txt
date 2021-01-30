@@ -1,0 +1,43 @@
+*************************************************************************
+export const something = (payload) => dispatch => {                     
+  dispatch({type:"asdfsdf"})                                            
+  axios.post("asf", data, config)                                       
+  .then((res) => {
+    dispatch({
+      type:"asdf",
+      data:res.data
+    })
+  }).catch((err) => {
+    dispatch({
+      type:"asf",
+      data:"asdfds" 
+    })
+  })
+}
+
+*************************************************************************
+export function clap (article_id) {
+  return (dispatch) => {
+    console.log('clapping...')
+    axios.post(`${url}article/clap`,{ article_id }).then((res) => {
+      dispatch({type:'CLAP_ARTICLE'})
+    }).catch((err)=>console.log(err))
+  }
+}
+
+
+****************************************************************************
+
+export const Postusers = () =>{
+axios.post('http://localhost:8000/api/users',{
+  name:"",
+  email:"",
+  password:""
+})
+.then((res) =>{
+  console.log(res)
+})
+.catch((err)=>{
+  console.log(err)
+})
+}

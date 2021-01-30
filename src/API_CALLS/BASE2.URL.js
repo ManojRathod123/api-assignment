@@ -1,1 +1,0 @@
-export const API_BASE2_PATH = "http://localhost:8000/api/customers"
