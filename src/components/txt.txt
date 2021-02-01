@@ -16,14 +16,7 @@ export const something = (payload) => dispatch => {
 }
 
 *************************************************************************
-export function clap (article_id) {
-  return (dispatch) => {
-    console.log('clapping...')
-    axios.post(`${url}article/clap`,{ article_id }).then((res) => {
-      dispatch({type:'CLAP_ARTICLE'})
-    }).catch((err)=>console.log(err))
-  }
-}
+
 
 
 ****************************************************************************
@@ -41,3 +34,108 @@ axios.post('http://localhost:8000/api/users',{
   console.log(err)
 })
 }
+
+
+
+
+***************************** POST  DATA *********************************
+
+So the flow for posting the form data to the server using redux-thunk goes like so
+
+When submit button is clicked and action gets dispatched let us suppose SAVE_USER_TO_SERVER and an object with 
+all the user details (name, email etc) is passed to for eg postUserThunkCreator() (which is a thunk function like 
+in examples above).
+
+Then thunk makes a post request to the server and sends the data along with it.
+ And on the server side it gets saved into the database and response is returned
+
+Now myAjaxLib.post("/someEndpoint", {data : someValue}).then() in .then() function you can 
+check for the response if successfull the dispatch another action for eg SAVE_USER_TO_SERVER_SUCCESS 
+otherwise SAVE_USER_TO_SERVER_FALIURE;
+
+*So as we can see that three actions are bieng dipatched in this work flow namely : SAVE_USER_TO_SERVER
+
+SAVE_USER_TO_SERVER_SUCCESS
+
+SAVE_USER_TO_SERVER_FALIURE
+
+So I hope its clear to you that you to create three action mentioned above.
+
+
+***************************************************************************************** 
+
+
+
+import axios from "axios";
+
+//example 1
+export const myThunkActionCreator = ()=> {
+  return (dispatch, getState) => {
+      dispatch({type : "REQUEST_STARTED"});
+
+      axios.post("http://localhost:8000/api/users", {
+      name:" ",
+      email:"",
+      password:" "})
+          .then( response => dispatch({type : "REQUEST_SUCCEEDED", payload : response}))
+          .catch(error => dispatch({type : "REQUEST_FAILED", error : error}));    
+  };
+}
+
+
+**************************************** EMAIL VALIDATION ***********************************************
+
+        if (typeof values["email"] !== "undefined") {
+          
+          var pattern = new RegExp(/^(("[\w-\s]+")|([\w-]+(?:\.[\w-]+)*)|("[\w-\s]+")([\w-]+(?:\.[\w-]+)*))(@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$)|(@\[?((25[0-5]\.|2[0-4][0-9]\.|1[0-9]{2}\.|[0-9]{1,2}\.))((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\.){2}(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\]?$)/i);
+          if (!pattern.test(values["email"])) {
+            isValid = false;
+            errors["email"] = "Please enter valid email address.";
+          }
+        }
+
+************************************** Axios Post data ***************************************************
+// import axios from "axios";
+
+// export const userPost = () => {
+//   return (dispatch) => {
+//     dispatch({ type: "REQUEST_STARTED" });
+
+//     axios
+//       .post("http://localhost:8000/api/users", {
+//         name: " ",
+//         email: " ",
+//         password: " ",
+//       })
+//       .then((response) =>
+//         dispatch({ type: "REQUEST_SUCCEEDED", payload: response })
+//       )
+//       .catch((error) => dispatch({ type: "REQUEST_FAILED", error: error }));
+//   };
+// };
+//******************************************************************************************************************//
+
+
+// export const onSubmit = (payload) => (dispatch) => {
+//   dispatch({ type: "REQUEST_STARTED" });
+//   axios.post(
+//       "http://localhost:8000/api/users", {
+//         name: " ",
+//         email: " ",
+//         password: " ",
+//       },
+//       config
+//     )
+//     .then((res) => {
+//       dispatch({
+//         type: "REQUEST_SUCCEEDED",
+//         data: res.data,
+//       });
+//     })
+//     .catch((error) => {
+//       dispatch({
+//         type: "REQUEST_FAILED",
+//         error: error,
+//       });
+//     });
+// };

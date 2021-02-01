@@ -1,3 +1,4 @@
+******************************************************************************************************
 /* REACT-FINAL-FORM
 
 1) React final form has few default methods..
@@ -16,6 +17,7 @@
 <Field name="firstname" validate={required}
 
 ******* To this area code we called React-render-props.This approch called childern  ******** 
+<Field>
               {({ input, meta }) => (
                 <div>
                   <label>Name</label>
@@ -25,3 +27,20 @@
               )}
 </Field>
 */
+
+***********************************************  STORE **************************************************************
+
+* A store is a JavaScript object.
+
+* You must never directly modify or change the state that is kept inside the Redux store.
+
+* Instead, the only way to cause an update to the state is to create a plain action object that describes 
+"something that happened in the application", and then dispatch the action to the store to tell it what happened.
+
+* When an action is dispatched, the store runs the root reducer function, and lets it calculate the new state based 
+on the old state and the action.
+
+******************************************** SUBSCRIBERS ******************************************************
+* Finally, the store notifies subscribers that the state has been updated so the UI can be updated with the new data.
+
+

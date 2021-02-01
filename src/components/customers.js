@@ -12,7 +12,6 @@ const Customers = () => {
     <>
       <h1 className=" title">Customers API</h1>
       <div>
-        {" "}
         <ul>
           <div>
             <table className="table">
