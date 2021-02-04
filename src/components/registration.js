@@ -1,108 +1,134 @@
-import React  from "react";
+import React, { useState, useEffect } from "react";
 import Button from "react-bootstrap/Button";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Form, Field } from "react-final-form";
-import axios from "axios";
-
-
-const onSubmit = (payload) => (dispatch) => {
-  dispatch({ type: "REQUEST_STARTED" });
-  axios.post(
-      "http://localhost:8000/api/users", {
-        name: " ",
-        email: " ",
-        password: " ",
-      },
-    )
-    
-    .then((res) => {
-      dispatch({
-        type: "REQUEST_SUCCEEDED",
-        data: res.data,
-      });
-    })
-    .catch((error) => {
-      dispatch({
-        type: "REQUEST_FAILED",
-        error: error,
-      });
-    });
-};
+import { postUser } from "../Redux/Registration/RegisterAxios";
+import { useDispatch } from "react-redux";
 
 const Registration = () => {
+  const [state, setData] = useState({name: "",email: "",password: "",confirm: ""});
 
-  // const onSubmit = (values) => { // values is paramerter or object
-  // window.alert(JSON.stringify(values, 0, 2));
+  //dispatch called here...
+  const dispatch = useDispatch();
+  const onSubmit = (values) => {
+    console.log(values);
+
+    dispatch(postUser(values));
+  };
 
   return (
     <Form
       // validation...
       onSubmit={onSubmit}
+      initialValues={state}
       validate={(values) => {
-        let errors = {}; 
+        const errors = {};
         if (!values.name) {
           errors.name = "Required";
         }
+
+        // email validation
+        const pattern = new RegExp(/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i);
         if (!values.email) {
           errors.email = "Required";
+        } else if (!pattern.test(values.email)) {
+          errors.email = "Please enter valid email address.";
         }
+
+        // password validation
         if (!values.password) {
           errors.password = "Required";
+        } else if (values.password.length < 5  ) {
+          errors.password = "must be more than 5 charaters";
+        }
+        if (!values.confirm) {
+          errors.confirm = "Required";
+        } else if (values.confirm !== values.password) {
+          errors.confirm = "Must match";
         }
         return errors;
       }}
-      render={({ handleSubmit, form, submitting, pristine, values }) => (
-  
+
+      render={({
+        handleSubmit,
+        form,
+        submitting,
+        pristine,
+        values,
+        errors,
+      }) => (
         <div className="auth-wrapper">
           <div className="main-div">
             <div className="auth-inner">
               <h2> Registration From </h2>
               <div className="sub-div">
                 <form onSubmit={handleSubmit}>
-                  <Field className="field" name="name">
-                    {({ input, meta }) => (
+                  <Field
+                    name="name"
+                    type="text"
+                    placeholder="name"
+                    className="form-control"
+                  >
+                    {({ input, meta, ...rest }) => (
                       <div className="form-group">
                         <label>Name</label>
-                        <input
-                          {...input}
-                          type="text"
-                          placeholder="name"
-                          className="form-control"
-                        />
-                        {meta.error && meta.touched && <span>{meta.error}</span>}
+                        <input {...input} {...rest} />
+                        {meta.error && meta.touched && (
+                          <span>{meta.error}</span>
+                        )}
                       </div>
                     )}
                   </Field>
-                  <Field name="email">
-                    {({ input, meta }) => (
+                  <Field
+                    name="email"
+                    type="text"
+                    placeholder="email"
+                    className="form-control"
+                  >
+                    {({ input, meta, ...rest }) => (
                       <div className="form-group">
                         <label>Email</label>
-                        <input
-                          {...input}
-                          type="text"
-                          placeholder="email"
-                          className="form-control"
-                        />
-                        {meta.error && meta.touched && <span>{meta.error}</span>}
+                        <input {...input} {...rest} />
+                        {meta.error && meta.touched && (
+                          <span>{meta.error}</span>
+                        )}
                       </div>
                     )}
                   </Field>
-                  <Field name="password">
-                    {({ input, meta }) => (
+                  <Field
+                    name="password"
+                    type="password"
+                    placeholder="password"
+                    className="form-control"
+                  >
+                    {({ input, meta, ...rest }) => (
                       <div className="form-group">
                         <label className="label">Password</label>
-                        <input
-                          {...input}
-                          type="password"
-                          placeholder="password"
-                          className="form-control"
-                        />
-                        {meta.error && meta.touched && <span>{meta.error}</span>}
+                        <input {...input} {...rest} />
+                        {meta.error && meta.touched && (
+                          <span>{meta.error}</span>
+                        )}
+                      </div>
+                    )}
+                  </Field>
+                  <Field
+                    name="confirm"
+                    type="password"
+                    placeholder="confirm password"
+                    className="form-control"
+                  >
+                    {({ input, meta, ...rest }) => (
+                      <div className="form-group">
+                        <label className="label">Confirm Password</label>
+                        <input {...input} {...rest} />
+                        {meta.error && meta.touched && (
+                          <span>{meta.error}</span>
+                        )}
                       </div>
                     )}
                   </Field>
                   <div>
-                    <Button as="input" type="submit" value="Submit"/>{" "}
+                    <Button as="input" type="submit" value="Submit" />{" "}
                     <Button
                       as="input"
                       type="reset"
@@ -111,6 +137,7 @@ const Registration = () => {
                       disabled={submitting || pristine}
                     />
                   </div>
+                  <pre>{JSON.stringify(values, undefined, 3)}</pre>
                 </form>
               </div>
             </div>
@@ -118,7 +145,7 @@ const Registration = () => {
         </div>
       )}
     />
-  )
+  );
 };
 
-export default Registration; 
+export default Registration;

@@ -1,16 +1,16 @@
 import React from "react";
 import Menu from "./components/Menu";
-import Registration from "./components/registration";
+import Registration from "./components/Registration";
 import Login from "./components/Login";
 import Contact from "./components/Contact";
 import Home from "./components/Home";
-import Footer from "./components/footer";
+import Footer from "./components/Footer";
 import Genres from "./components/Genres";
 import Customers from "./components/customers";
-import Movies from "./components/movies";
+import Movies from "./components/Movies";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import { Provider } from "react-redux";
-import store from "./Redux/store";
+import store from "./Redux/Store/store";
 
 const App = () => {
   return (
@@ -34,3 +34,4 @@ const App = () => {
   );
 };
 export default App;
+    

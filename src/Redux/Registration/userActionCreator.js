@@ -1,4 +1,4 @@
-import { REQUEST_STARTED, REQUEST_SUCCEEDED,REQUEST_FAILED} from './userActionType';
+import { REQUEST_STARTED, REQUEST_SUCCEEDED,REQUEST_FAILED} from '../Login/ActionType';
 
 // Action creator
 const request_started = () => {

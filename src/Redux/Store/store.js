@@ -1,4 +1,4 @@
-import {userReducer} from './Action/userReducer';   
+import {reducer} from '../Reducers/combineReducer';
 import { createStore, applyMiddleware } from "redux";
 import { composeWithDevTools } from "redux-devtools-extension";
 import thunk from "redux-thunk";
@@ -6,7 +6,7 @@ import thunk from "redux-thunk";
 const  initialState = {}
 const middleware = [thunk];
 
-const store = createStore(userReducer,initialState, composeWithDevTools(applyMiddleware(...middleware))
+const store = createStore(reducer,initialState,composeWithDevTools(applyMiddleware(...middleware))
 ); 
 
-export default store
+export default store    

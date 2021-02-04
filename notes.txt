@@ -44,3 +44,65 @@ on the old state and the action.
 * Finally, the store notifies subscribers that the state has been updated so the UI can be updated with the new data.
 
 
+***************************** POST  DATA *********************************
+
+So the flow for posting the form data to the server using redux-thunk goes like so
+
+When submit button is clicked and action gets dispatched let us suppose SAVE_USER_TO_SERVER and an object with 
+all the user details (name, email etc) is passed to for eg postUserThunkCreator() (which is a thunk function like 
+in examples above).
+
+Then thunk makes a post request to the server and sends the data along with it.
+ And on the server side it gets saved into the database and response is returned
+
+Now myAjaxLib.post("/someEndpoint", {data : someValue}).then() in .then() function you can 
+check for the response if successfull the dispatch another action for eg SAVE_USER_TO_SERVER_SUCCESS 
+otherwise SAVE_USER_TO_SERVER_FALIURE;
+
+*So as we can see that three actions are bieng dipatched in this work flow namely : SAVE_USER_TO_SERVER
+
+SAVE_USER_TO_SERVER_SUCCESS
+
+SAVE_USER_TO_SERVER_FALIURE
+
+So I hope its clear to you that you to create three action mentioned above.
+
+
+*************************************** CREATE STORE ********************************************* 
+
+You are passing in two reducers to the createStore function instead of one.
+
+* Since the third argument to createStore is always the enhancer function it thinks that the 'initiaeState'
+* variable is an enhancer function since you are passing this in as the thid argument to createStore.
+
+************************************* REDUCER *******************************************************
+* Remember the root reducer in your app should combine all your reducers into one single reducer.
+
+* First and foremost, it's important to understand that your entire application really 
+* only has one single reducer function
+
+***************************** POST  DATA *********************************
+
+So the flow for posting the form data to the server using redux-thunk goes like so
+
+When submit button is clicked and action gets dispatched let us suppose SAVE_USER_TO_SERVER and an object with 
+all the user details (name, email etc) is passed to for eg postUserThunkCreator() (which is a thunk function like 
+in examples above).
+
+Then thunk makes a post request to the server and sends the data along with it.
+ And on the server side it gets saved into the database and response is returned
+
+Now myAjaxLib.post("/someEndpoint", {data : someValue}).then() in .then() function you can 
+check for the response if successfull the dispatch another action for eg SAVE_USER_TO_SERVER_SUCCESS 
+otherwise SAVE_USER_TO_SERVER_FALIURE;
+
+*So as we can see that three actions are bieng dipatched in this work flow namely : SAVE_USER_TO_SERVER
+
+SAVE_USER_TO_SERVER_SUCCESS
+
+SAVE_USER_TO_SERVER_FALIURE
+
+So I hope its clear to you that you to create three action mentioned above.
+
+
+***************************************************************************************** 

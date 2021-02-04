@@ -1,4 +1,4 @@
-import { REQUEST_STARTED, REQUEST_SUCCEEDED,REQUEST_FAILED} from "./userActionType";
+import { REQUEST_STARTED, REQUEST_SUCCEEDED,REQUEST_FAILED} from '../Login/ActionType';
 
 // here we initiate the state
 const initialState = {
@@ -8,12 +8,12 @@ const initialState = {
 };
 
 // create reducer
-export const userReducer = (state = initialState, action) => {
+export const RegisterReducer = (state = initialState, action) => {
   switch (action.type) {
     case REQUEST_STARTED:
       return {
         ...state,
-      };
+      };  
     case REQUEST_SUCCEEDED:
       return {
         ...state,

@@ -38,31 +38,7 @@ axios.post('http://localhost:8000/api/users',{
 
 
 
-***************************** POST  DATA *********************************
-
-So the flow for posting the form data to the server using redux-thunk goes like so
-
-When submit button is clicked and action gets dispatched let us suppose SAVE_USER_TO_SERVER and an object with 
-all the user details (name, email etc) is passed to for eg postUserThunkCreator() (which is a thunk function like 
-in examples above).
-
-Then thunk makes a post request to the server and sends the data along with it.
- And on the server side it gets saved into the database and response is returned
-
-Now myAjaxLib.post("/someEndpoint", {data : someValue}).then() in .then() function you can 
-check for the response if successfull the dispatch another action for eg SAVE_USER_TO_SERVER_SUCCESS 
-otherwise SAVE_USER_TO_SERVER_FALIURE;
-
-*So as we can see that three actions are bieng dipatched in this work flow namely : SAVE_USER_TO_SERVER
-
-SAVE_USER_TO_SERVER_SUCCESS
-
-SAVE_USER_TO_SERVER_FALIURE
-
-So I hope its clear to you that you to create three action mentioned above.
-
-
-***************************************************************************************** 
+***********************************************************************************
 
 
 
@@ -113,7 +89,10 @@ export const myThunkActionCreator = ()=> {
 //       .catch((error) => dispatch({ type: "REQUEST_FAILED", error: error }));
 //   };
 // };
-//******************************************************************************************************************//
+
+
+
+******************************************************************************************************************//
 
 
 // export const onSubmit = (payload) => (dispatch) => {
@@ -139,3 +118,45 @@ export const myThunkActionCreator = ()=> {
 //       });
 //     });
 // };
+
+*********************************************************************************************
+ *  //  window.alert(JSON.stringify(values, 0, 2));
+
+
+
+
+
+
+
+
+
+
+
+
+ ********************************************************************************************
+ import { REQUEST_STARTED, REQUEST_SUCCEEDED,REQUEST_FAILED} from '../ActionRegister/userActionType';
+
+// Action creator
+const request_started = () => {
+    return {
+        type = REQUEST_STARTED
+  }
+}
+const request_successed = () => {
+    return {
+        type = REQUEST_SUCCEEDED,
+        payload: {
+          email: " ",
+          password: " "
+        }
+        
+  }
+}
+const request_failed = () => {
+    return {
+        type = REQUEST_FAILED,
+        payload: error,        
+    };
+  };
+  
+export {request_started, request_successed, request_failed} 
